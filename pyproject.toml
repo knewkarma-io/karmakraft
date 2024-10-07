@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "api"
+version = "0.1.0"
+description = "API component for Knew Karma"
+authors = ["Richard Mwewa <rly0nheart@duck.com>"]
+license = "GPL-3.0"
+readme = "README.md"
+homepage = "https://github.com/knewkarma-io/api"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+karmakaze = "^1.4.0"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.1.1"
+poetry = "^1.8.3"
+pytest = "^8.2.0"
+pytest-asyncio = "^0.24.0"
+tenacity = "^8.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
