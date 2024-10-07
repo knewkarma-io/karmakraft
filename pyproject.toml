@@ -5,6 +5,7 @@ description = "API component for Knew Karma"
 authors = ["Richard Mwewa <rly0nheart@duck.com>"]
 license = "GPL-3.0"
 readme = "README.md"
+homepage = "https://github.com/knewkarma-io/api"
 
 [tool.poetry.dependencies]
 python = "^3.10"
