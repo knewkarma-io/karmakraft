@@ -3,9 +3,20 @@ from typing import List, Dict
 
 import aiohttp
 import pytest
+from api import Api
 from tenacity import retry, stop_after_attempt, wait_fixed, retry_if_exception_type
 
-from conftest import api, TEST_USERNAME, TEST_SUBREDDIT_2, TEST_SUBREDDIT_1
+TEST_USERNAME: str = "AutoModerator"
+TEST_SUBREDDIT_1: str = "AskScience"
+TEST_SUBREDDIT_2: str = "AskReddit"
+
+
+api = Api(
+    headers={
+        "User-Agent": f"Knew Karma/Testing "
+        f"(PyTest {pytest.__version__}; +https://github.com/knewkarma-io/api)"
+    }
+)
 
 
 @retry(
