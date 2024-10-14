@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "api"
-version = "0.1.0"
+name = "knwkrma-api"
+version = "1.0.0"
 description = "API component for Knew Karma"
 authors = ["Richard Mwewa <rly0nheart@duck.com>"]
 license = "GPL-3.0"

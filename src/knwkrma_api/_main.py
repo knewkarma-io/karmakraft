@@ -1,10 +1,12 @@
 import asyncio
 import time
 from random import randint
-from typing import Callable, Literal, Union, Optional, List, Dict
+from typing import Callable, Literal, Union, Optional, List, Dict, TYPE_CHECKING
 
-from aiohttp import ClientSession
 from karmakaze import Sanitise
+
+if TYPE_CHECKING:
+    from aiohttp import ClientSession
 
 __all__ = ["Api", "SORT_CRITERION", "TIMEFRAME", "TIME_FORMAT"]
 
