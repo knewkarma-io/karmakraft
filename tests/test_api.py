@@ -3,8 +3,9 @@ from typing import List, Dict
 
 import aiohttp
 import pytest
-from api import Api
 from tenacity import retry, stop_after_attempt, wait_fixed, retry_if_exception_type
+
+from knwkrma_api import Api
 
 TEST_USERNAME: str = "AutoModerator"
 TEST_SUBREDDIT_1: str = "AskScience"
