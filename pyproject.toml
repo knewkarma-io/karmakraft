@@ -9,6 +9,7 @@ homepage = "https://github.com/knewkarma-io/api"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+aiohttp = "^3.10.10"
 karmakaze = "^1.4.0"
 
 [tool.poetry.group.dev.dependencies]
