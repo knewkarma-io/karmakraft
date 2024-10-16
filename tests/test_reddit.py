@@ -2,17 +2,16 @@ from datetime import timezone, datetime, timedelta
 from typing import List, Dict
 
 import aiohttp
+import karmakraft
 import pytest
 from tenacity import retry, stop_after_attempt, wait_fixed, retry_if_exception_type
-
-import karmakraft
 
 TEST_USERNAME: str = "AutoModerator"
 TEST_SUBREDDIT_1: str = "AskScience"
 TEST_SUBREDDIT_2: str = "AskReddit"
 
 
-api = karmakraft.Reddit(
+reddit = karmakraft.Reddit(
     headers={
         "User-Agent": f"Knew Karma/Testing "
         f"(PyTest {pytest.__version__}; +https://github.com/knewkarma-io/karmakraft)"
@@ -33,8 +32,8 @@ async def fetch_with_retry(fetch_func, *args, **kwargs):
 @pytest.mark.asyncio
 async def test_username_availability():
     is_available: List[Dict] = await fetch_with_retry(
-        api.send_request,
-        endpoint=api.endpoint("username_available"),
+        reddit.send_request,
+        endpoint=reddit.endpoint("username_available"),
         params={"user": TEST_USERNAME},
     )
 
@@ -46,7 +45,7 @@ async def test_search_for_posts():
     """Tests searching for posts that contain a query string from all over Reddit."""
     search_posts_query: str = "coronavirus"
     search_posts: List[Dict] = await fetch_with_retry(
-        api.search_entities,
+        reddit.search,
         kind="posts",
         query=search_posts_query,
         limit=100,
@@ -68,7 +67,7 @@ async def test_search_for_posts_in_a_subreddit():
     search_query: str = "Rick and Morty"
     posts_subreddit: str = "AdultSwim"
     search_results = await fetch_with_retry(
-        api.get_posts_or_comments,
+        reddit.posts_or_comments,
         kind="search_from_a_subreddit",
         query=search_query,
         subreddit=posts_subreddit,
@@ -91,7 +90,7 @@ async def test_search_for_subreddits():
     """Tests searching for subreddits."""
     search_subreddits_query: str = "science"
     search_subreddits: List[Dict] = await fetch_with_retry(
-        api.search_entities,
+        reddit.search,
         kind="subreddits",
         query=search_subreddits_query,
         limit=100,
@@ -113,7 +112,7 @@ async def test_search_for_users():
     """Tests searching for users."""
     search_users_query: str = "justin"
     search_users: List[Dict] = await fetch_with_retry(
-        api.search_entities,
+        reddit.search,
         kind="users",
         query=search_users_query,
         limit=50,
@@ -132,7 +131,7 @@ async def test_search_for_users():
 async def test_get_user_and_subreddit_profiles():
     """Tests getting user and subreddit profiles."""
     user_profile: Dict = await fetch_with_retry(
-        api.get_entity,
+        reddit.entity,
         kind="user",
         username=TEST_USERNAME,
     )
@@ -142,7 +141,7 @@ async def test_get_user_and_subreddit_profiles():
     assert user_profile.get("created") == 1325741068
 
     subreddit_profile: Dict = await fetch_with_retry(
-        api.get_entity,
+        reddit.entity,
         kind="subreddit",
         subreddit=TEST_SUBREDDIT_2,
     )
@@ -155,7 +154,7 @@ async def test_get_user_and_subreddit_profiles():
 async def test_get_posts_or_comments_from_a_subreddit():
     """Tests getting posts from a subreddit."""
     subreddit_posts: List = await fetch_with_retry(
-        api.get_posts_or_comments,
+        reddit.posts_or_comments,
         kind="posts_from_a_subreddit",
         subreddit=TEST_SUBREDDIT_1,
         limit=50,
@@ -174,7 +173,7 @@ async def test_get_posts_or_comments_from_a_user():
     """Tests getting posts from a user."""
     username: str = "AutoModerator"
     user_posts: List = await fetch_with_retry(
-        api.get_posts_or_comments,
+        reddit.posts_or_comments,
         kind="posts_from_a_user",
         username=username,
         limit=100,
@@ -191,7 +190,7 @@ async def test_get_posts_or_comments_from_a_user():
 async def test_get_new_posts():
     """Tests getting new posts."""
     new_posts = await fetch_with_retry(
-        api.get_posts_or_comments,
+        reddit.posts_or_comments,
         kind="new",
         limit=200,
     )
@@ -213,7 +212,7 @@ async def test_get_new_posts():
 async def test_get_new_users():
     """Tests getting new users."""
     new_users: List[Dict] = await fetch_with_retry(
-        api.get_users,
+        reddit.users,
         kind="new",
         timeframe="week",
         limit=100,
@@ -237,7 +236,7 @@ async def test_get_new_users():
 async def test_get_new_subreddits():
     """Tests getting new subreddits."""
     new_subreddits = await fetch_with_retry(
-        api.get_subreddits,
+        reddit.subreddits,
         timeframe="day",
         kind="new",
         limit=200,
