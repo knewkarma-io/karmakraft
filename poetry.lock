@@ -846,7 +846,7 @@ description = "Data sanitation engine for Knew Karma"
 optional = false
 python-versions = "*"
 files = []
-develop = true
+develop = false
 
 [package.source]
 type = "directory"

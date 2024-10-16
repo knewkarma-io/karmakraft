@@ -381,7 +381,7 @@ class Reddit:
         ],
         limit: int,
         timeframe: TIMEFRAME = "all",
-        sort: SORT_CRITERION = "all",
+        sort: SORT = "all",
         **kwargs,
     ) -> List[Dict]:
         """
@@ -564,7 +564,7 @@ class Reddit:
         kind: Literal["users", "subreddits", "posts"],
         query: str,
         limit: int,
-        sort: SORT_CRITERION = "all",
+        sort: SORT = "all",
         **kwargs,
     ) -> List[Dict]:
         """
