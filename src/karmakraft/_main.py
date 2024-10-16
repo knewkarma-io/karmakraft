@@ -3,8 +3,8 @@ import time
 from random import randint
 from typing import Callable, Literal, Union, Optional, List, Dict
 
+import karmakaze
 from aiohttp import ClientSession
-from karmakaze import Sanitise
 
 __all__ = ["Reddit", "SORT_CRITERION", "TIMEFRAME", "TIME_FORMAT"]
 
@@ -13,12 +13,13 @@ SORT_CRITERION = Literal["controversial", "new", "top", "best", "hot", "rising",
 TIMEFRAME = Literal["hour", "day", "week", "month", "year", "all"]
 TIME_FORMAT = Literal["concise", "locale"]
 
+
 class Reddit:
-    """Represents the Knew Karma's Reddit API and provides methods for getting various data from Reddit."""
+    """Represents the Reddit API accessible tp Knew Karma and provides methods for getting related data."""
 
     def __init__(self, headers: Optional[Dict] = None):
         self._headers = headers
-        self._sanitise = Sanitise()
+        self._sanitise = karmakaze.Sanitise()
 
     @staticmethod
     def endpoint(
@@ -54,9 +55,6 @@ class Reddit:
         }
 
         return endpoint_map.get(kind)
-
-    def remove_duplicates(data):
-        return [dict(t) for t in {tuple(sorted(item.items())) for item in data}]
 
     async def send_request(
         self, session: ClientSession, endpoint: str, params: Optional[Dict] = None
@@ -256,7 +254,7 @@ class Reddit:
             )
             await asyncio.sleep(0.01)  # Sleep for 10 milliseconds
 
-    async def check_reddit_status(
+    async def infrastructure_status(
         self, session: ClientSession, **kwargs
     ) -> Union[List[Dict], None]:
         """
@@ -303,7 +301,7 @@ class Reddit:
 
                     return components
 
-    async def get_entity(
+    async def entity(
         self,
         session: ClientSession,
         kind: Literal["comment", "post", "subreddit", "user", "wikipage"],
@@ -364,7 +362,7 @@ class Reddit:
 
         return sanitised_response
 
-    async def get_posts_or_comments(
+    async def posts_or_comments(
         self,
         session: ClientSession,
         kind: Literal[
@@ -453,7 +451,7 @@ class Reddit:
 
         return posts
 
-    async def get_subreddits(
+    async def subreddits(
         self,
         session: ClientSession,
         kind: Literal["all", "default", "new", "popular", "user_moderated"],
@@ -510,7 +508,7 @@ class Reddit:
 
         return subreddits
 
-    async def get_users(
+    async def users(
         self,
         session: ClientSession,
         kind: Literal["all", "popular", "new"],
@@ -560,7 +558,7 @@ class Reddit:
 
         return users
 
-    async def search_entities(
+    async def search(
         self,
         session: ClientSession,
         kind: Literal["users", "subreddits", "posts"],
