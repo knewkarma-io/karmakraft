@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "karmakraft"
-version = "1.0.0"
+version = "2.0.0"
 description = "API component for Knew Karma"
-authors = ["Richard Mwewa <rly0nheart@duck.com>"]
+authors = ["Richard Mwewa <rly0nheart@duck.com>", "Knew Karma IO redacted@redacted.com"]
 license = "GPL-3.0+"
 readme = "README.md"
 homepage = "https://github.com/knewkarma-io/karmakraft"
