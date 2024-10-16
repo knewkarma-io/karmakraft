@@ -1,16 +1,16 @@
 [tool.poetry]
-name = "knwkrma-api"
-version = "1.0.3"
+name = "karmakraft"
+version = "1.0.0"
 description = "API component for Knew Karma"
 authors = ["Richard Mwewa <rly0nheart@duck.com>"]
-license = "GPL-3.0"
+license = "GPL-3.0+"
 readme = "README.md"
-homepage = "https://github.com/knewkarma-io/api"
+homepage = "https://github.com/knewkarma-io/karmakraft"
 
 [tool.poetry.dependencies]
 python = "^3.10"
 aiohttp = "^3.10.10"
-karmakaze = "^1.4.0"
+karmakaze = "^1.5.0"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.1.1"
