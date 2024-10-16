@@ -1,4 +1,4 @@
-<p align="center">API component for <a href="https://pypi.otg/project/knewkarma">Knew Karma</a></p>
+<p align="center">API component for <a href="https://pypi.org/project/knewkarma">Knew Karma</a></p>
 
 <p align="center">
   <a href="https://github.com/knewkarma-io/knewkarma"><img alt="Code Style" src="https://img.shields.io/badge/code%20style-black-000000?logo=github&link=https%3A%2F%2Fgithub.com%2Fknewkarma-io%2Fkarmakraft"></a>
