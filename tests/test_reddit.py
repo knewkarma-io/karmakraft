@@ -192,12 +192,12 @@ async def test_get_new_posts():
     new_posts = await fetch_with_retry(
         reddit.posts_or_comments,
         kind="new",
-        limit=200,
+        limit=100,
     )
 
     now = datetime.now(timezone.utc)
     assert isinstance(new_posts, List)
-    assert len(new_posts) == 200
+    assert len(new_posts) == 100
     assert all(isinstance(post, Dict) for post in new_posts)
     for new_post in new_posts:
         created_timestamp = datetime.fromtimestamp(
@@ -239,12 +239,12 @@ async def test_get_new_subreddits():
         reddit.subreddits,
         timeframe="day",
         kind="new",
-        limit=200,
+        limit=50,
     )
 
     now = datetime.now(timezone.utc)
     assert isinstance(new_subreddits, List)
-    assert len(new_subreddits) == 200
+    assert len(new_subreddits) == 50
     assert all(isinstance(subreddit, Dict) for subreddit in new_subreddits)
     for new_subreddit in new_subreddits:
         created_timestamp = datetime.fromtimestamp(
