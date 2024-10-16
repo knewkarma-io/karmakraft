@@ -6,10 +6,10 @@ from typing import Callable, Literal, Union, Optional, List, Dict
 import karmakaze
 from aiohttp import ClientSession
 
-__all__ = ["Reddit", "SORT_CRITERION", "TIMEFRAME", "TIME_FORMAT"]
+__all__ = ["Reddit", "SORT", "TIMEFRAME", "TIME_FORMAT"]
 
 
-SORT_CRITERION = Literal["controversial", "new", "top", "best", "hot", "rising", "all"]
+SORT = Literal["controversial", "new", "top", "best", "hot", "rising", "all"]
 TIMEFRAME = Literal["hour", "day", "week", "month", "year", "all"]
 TIME_FORMAT = Literal["concise", "locale"]
 
