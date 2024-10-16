@@ -6,7 +6,7 @@ from typing import Callable, Literal, Union, Optional, List, Dict
 from aiohttp import ClientSession
 from karmakaze import Sanitise
 
-__all__ = ["Api", "SORT_CRITERION", "TIMEFRAME", "TIME_FORMAT"]
+__all__ = ["Reddit", "SORT_CRITERION", "TIMEFRAME", "TIME_FORMAT"]
 
 
 SORT_CRITERION = Literal["controversial", "new", "top", "best", "hot", "rising", "all"]
@@ -14,7 +14,7 @@ TIMEFRAME = Literal["hour", "day", "week", "month", "year", "all"]
 TIME_FORMAT = Literal["concise", "locale"]
 
 class Reddit:
-    """Represents the Knew Karma API and provides methods for getting various data from the Reddit API."""
+    """Represents the Knew Karma's Reddit API and provides methods for getting various data from Reddit."""
 
     def __init__(self, headers: Optional[Dict] = None):
         self._headers = headers
